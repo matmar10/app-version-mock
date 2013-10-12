@@ -19,3 +19,13 @@ Installation
 4. Run the server (from the `web` directory): `php -S localhost:8000`
 5. Point your browser to `localhost:8000`
 
+*NOTE: PHP must be able to write to the directory `db/`* 
+
+If PHP cannot write to the directory, you can fix it using the following:
+
+```bash
+$ APACHEUSER=`ps aux | grep -E '[a]pache|[h]ttpd' | grep -v root | head -1 | cut -d\  -f1`
+$ sudo chmod +a "$APACHEUSER allow delete,write,append,file_inherit,directory_inherit" db
+$ sudo chmod +a "`whoami` allow delete,write,append,file_inherit,directory_inherit" db
+```
+
