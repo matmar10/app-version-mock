@@ -1,0 +1,13 @@
+{
+  "name": "app-version-mock",
+  "version": "0.0.1",
+  "main": "web",
+  "ignore": [
+    ".jshintrc"
+  ],
+  "dependencies": {
+    "angular": "~1.0.8",
+    "angular-resource": "~1.0.8",
+    "bootstrap": "~3.0.0"
+  }
+}

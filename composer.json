@@ -1,0 +1,16 @@
+{
+    "name": "matmar10/app-version-mock",
+    "description": "A simple web service that mocks the latest version data",
+    "require": {
+        "symfony/yaml": "~2.3.6",
+        "silex/silex": "~1.1"
+    },
+    "license": "propreitary",
+    "authors": [
+        {
+            "name": "Matthew J. Martin",
+            "email": "matthew.mar10@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev"
+}

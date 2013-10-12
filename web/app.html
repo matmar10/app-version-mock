@@ -1,0 +1,300 @@
+<!doctype html>
+<html>
+<head>
+    <title>Version API Service Mock</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- vendor styles -->
+    <link rel="stylesheet" type="text/css" href="vendor/bootstrap/dist/css/bootstrap.css"/>
+    <link rel="stylesheet" type="text/css" href="vendor/bootstrap/dist/css/bootstrap-theme.css"/>
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+    <script type="text/javascript" src="vendor/bootstrap/assets/js/html5shiv.js"></script>
+    <script type="text/javascript" src="vendor/bootstrap/assets/js/respond.min.js"></script>
+    <![endif]-->
+</head>
+<body data-ng-app="desjAppVersionMock" data-ng-controller="MainCtrl">
+
+<div class="jumbotron">
+    <div class="container">
+        <h1>App Version API</h1>
+        <p>Helping you test forcing App upgrades <em>since 2013</em></p>
+    </div>
+</div>
+
+<div class="container">
+
+    <div class="row">
+        <div class="col-md-6">
+
+            <h2>Android</h2>
+
+            <h3>Current Version: <span class="label label-warning">{{ versions.Android.versionCourante }}</span></h3>
+
+            <form role="form">
+                <div class="form-group" data-ng-class="{'has-error': errors.Android.versionCourante}">
+
+                    <label class="control-label" for="android-version-current"
+                           data-ng-hide="loading.Android.versionCourante">Change To</label>
+                    <label class="control-label" for="android-version-current"
+                           data-ng-show="loading.Android.versionCourante">Updating&hellip;</label>
+
+                    <div class="row">
+                        <div class="col-xs-9">
+                            <input type="text" class="form-control" id="android-version-current"
+                                   placeholder="ex: 1.0.3"
+                                   data-ng-model="newVersion.Android.versionCourante"
+                                   data-ng-hide="loading.Android.versionCourante"/>
+
+                            <div class="progress progress-striped active"
+                                 data-ng-show="loading.Android.versionCourante">
+                                <div class="progress-bar" role="progressbar" style="width: 100%">
+                                    <span class="sr-only">100% Complete</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xs-3">
+                            <button type="submit" class="btn btn-primary"
+                                    data-ng-click="updateVersion('Android', 'versionCourante', newVersion.Android.versionCourante)"
+                                    data-ng-disabled="!newVersion.Android.versionCourante || loading.Android.versionCourante"
+                                    >Update
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row" data-ng-show="errors.Android.versionCourante">
+                    <div class="col-xs-12">
+                        <div class="alert alert-danger">
+                            <p>
+                                <strong>ERROR: </strong> {{ errors.Android.versionCourante }}
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row" data-ng-show="successMessage.Android.versionCourante">
+                    <div class="col-xs-12">
+                        <div class="alert alert-success">
+                            <p><strong>SUCCESS: </strong> The version number was successfully updated to <strong>{{ versions.Android.versionCourante }}</strong>.</p>
+                        </div>
+                    </div>
+                </div>
+
+            </form>
+
+            <h3>Minimum Version: <span class="label label-warning">{{ versions.Android.versionMinimum }}</span></h3>
+
+            <form role="form" data-ng-class="{'has-error': errors.Android.versionMinimum}">
+                <div class="form-group">
+                    <label class="control-label" for="android-version-minimum"
+                           data-ng-hide="loading.Android.versionMinimum">Change To</label>
+                    <label class="control-label" for="android-version-minimum"
+                           data-ng-show="loading.Android.versionMinimum">Updating&hellip;</label>
+
+                    <div class="row">
+                        <div class="col-xs-9">
+                            <input type="text" class="form-control" id="android-version-minimum"
+                                   placeholder="ex: 1.0.3"
+                                   data-ng-model="newVersion.Android.versionMinimum"
+                                   data-ng-hide="loading.Android.versionMinimum"/>
+
+                            <div class="progress progress-striped active" data-ng-show="loading.Android.versionMinimum">
+                                <div class="progress-bar" role="progressbar" style="width: 100%">
+                                    <span class="sr-only">100% Complete</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xs-3">
+                            <button type="submit" class="btn btn-primary"
+                                    data-ng-click="updateVersion('Android', 'versionMinimum', newVersion.Android.versionMinimum)"
+                                    data-ng-disabled="!newVersion.Android.versionMinimum || loading.Android.versionMinimum"
+                                    >Update
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row" data-ng-show="errors.Android.versionMinimum">
+                    <div class="col-xs-12">
+                        <div class="alert alert-danger">
+                            <p>
+                                <strong>ERROR: </strong> {{ errors.Android.versionMinimum }}
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row" data-ng-show="successMessage.Android.versionMinimum">
+                    <div class="col-xs-12">
+                        <div class="alert alert-success">
+                            <p><strong>SUCCESS: </strong> The version number was successfully updated to <strong>{{ versions.Android.versionCourante }}</strong>.</p>
+                        </div>
+                    </div>
+                </div>
+
+            </form>
+
+        </div>
+        <div class="col-md-6">
+            <h2>Blackberry</h2>
+
+            <h3>Current Version: <span class="label label-warning">{{ versions.Blackberry.versionCourante }}</span></h3>
+
+            <form role="form" data-ng-class="{'has-error': errors.Blackberry.versionCourante}">
+                <div class="form-group">
+                    <label class="control-label" for="blackberry-version-current"
+                           data-ng-hide="loading.Blackberry.versionCourante">Change To</label>
+                    <label class="control-label" for="blackberry-version-current"
+                           data-ng-show="loading.Blackberry.versionCourante">Updating&hellip;</label>
+
+                    <div class="row">
+                        <div class="col-xs-9">
+                            <input type="text" class="form-control" id="blackberry-version-current"
+                                   placeholder="ex: 1.0.3"
+                                   data-ng-model="newVersion.Blackberry.versionCourante"
+                                   data-ng-hide="loading.Blackberry.versionCourante"/>
+
+                            <div class="progress progress-striped active"
+                                 data-ng-show="loading.Blackberry.versionCourante">
+                                <div class="progress-bar" role="progressbar" style="width: 100%">
+                                    <span class="sr-only">100% Complete</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xs-3">
+                            <button type="submit" class="btn btn-primary"
+                                    data-ng-click="updateVersion('Blackberry', 'versionCourante', newVersion.Blackberry.versionCourante)"
+                                    data-ng-disabled="!newVersion.Blackberry.versionCourante || loading.Blackberry.versionCourante"
+                                    >Update
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row" data-ng-show="errors.Blackberry.versionCourante">
+                    <div class="col-xs-12">
+                        <div class="alert alert-danger">
+                            <p>
+                                <strong>ERROR: </strong> {{ errors.Blackberry.versionCourante }}
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row" data-ng-show="successMessage.Blackberry.versionCourante">
+                    <div class="col-xs-12">
+                        <div class="alert alert-success">
+                            <p><strong>SUCCESS: </strong> The version number was successfully updated to <strong>{{ versions.Android.versionCourante }}</strong>.</p>
+                        </div>
+                    </div>
+                </div>
+            </form>
+
+            <h3>Minimum Version: <span class="label label-warning">{{ versions.Blackberry.versionMinimum }}</span></h3>
+
+            <form role="form">
+                <div class="form-group" data-ng-class="{'has-error': errors.Blackberry.versionMinimum}">
+                    <label class="control-label" for="blackberry-version-minimum"
+                           data-ng-hide="loading.Blackberry.versionMinimum">Change To</label>
+                    <label class="control-label" for="blackberry-version-minimum"
+                           data-ng-show="loading.Blackberry.versionMinimum">Updating&hellip;</label>
+
+                    <div class="row">
+                        <div class="col-xs-9">
+                            <input type="text" class="form-control" id="blackberry-version-minimum"
+                                   placeholder="ex: 1.0.3"
+                                   data-ng-model="newVersion.Blackberry.versionMinimum"
+                                   data-ng-hide="loading.Blackberry.versionMinimum"/>
+
+                            <div class="progress progress-striped active"
+                                 data-ng-show="loading.Blackberry.versionMinimum">
+                                <div class="progress-bar" role="progressbar" style="width: 100%">
+                                    <span class="sr-only">100% Complete</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xs-3">
+                            <button type="submit" class="btn btn-primary"
+                                    data-ng-click="updateVersion('Blackberry', 'versionMinimum', newVersion.Blackberry.versionMinimum)"
+                                    data-ng-disabled="!newVersion.Blackberry.versionMinimum || loading.Blackberry.versionMinimum"
+                                    >Update
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row" data-ng-show="errors.Blackberry.versionMinimum">
+                    <div class="col-xs-12">
+                        <div class="alert alert-danger">
+                            <p>
+                                <strong>ERROR: </strong> {{ errors.Blackberry.versionMinimum }}
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row" data-ng-show="successMessage.Blackberry.versionMinimum">
+                    <div class="col-xs-12">
+                        <div class="alert alert-success">
+                            <p><strong>SUCCESS: </strong> The version number was successfully updated to <strong>{{ versions.Android.versionCourante }}</strong>.</p>
+                        </div>
+                    </div>
+                </div>
+
+            </form>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+            <h1>Instructions</h1>
+            <h2>API: Get Versions</h2>
+            <p>
+                Your app should make a <code>GET</code> request to <code>/api/version</code>
+                which returns the following JSON structure:
+            </p>
+            <pre>{
+    "Android": {
+        "versionMinimum": "1.6.0",
+        "versionCourante": "1.6.0"
+    },
+    "Blackberry": {
+        "versionMinimum": "1.6.0",
+        "versionCourante": "1.6.2"
+    }
+}</pre>
+            <h2>API: Update Versions (optional)</h2>
+            <p>
+                Your app should make a <code>PUT</code> request to <code>/api/version/<em>{platform}</em>/<em>{versionSpecifier}</em></code>
+                and specify the desired new version code as the request body.
+            </p>
+            <p>
+                For example: <code>/api/version/Android/versionMinimum</code>
+            </p>
+            <p>
+                Upon success, the version data is returned the same as in the GET request.
+            </p>
+            <h2>Changing Versions</h2>
+            <p>
+                Use the form above to adjust these values for your testing.
+            </p>
+
+            <div class="well well-md">
+                <h3>Questions?</h3>
+                <p>Contact Matthew &lt;matthew.martin@monitise.com&gt;</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- vendors -->
+<script type="text/javascript" src="vendor/angular/angular.js"></script>
+<script type="text/javascript" src="vendor/angular-resource/angular-resource.js"></script>
+
+<!-- app -->
+<script type="text/javascript" src="app.js"></script>
+
+</body>
+</html>
